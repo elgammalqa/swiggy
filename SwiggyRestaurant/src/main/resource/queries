@@ -1,0 +1,30 @@
+#Item selection Query
+
+
+select id_main_category ,maincat.name as mainname,maincat.desc as maindesc,
+id_menu_subcategory,
+main_category_id,
+subcat.name as subname,
+subcat.desc as subdesc,
+idswiggy_item_details,sub_category_id,
+idet.name,itemDesc from swiggy_main_category as maincat join
+swiggy_menu_subcategory as subcat on 
+maincat.id_main_category = subcat.id_menu_subcategory 
+join swiggy_item_details as idet on idet.sub_category_id = idet.sub_category_id
+where idet.idswiggy_item_details= ?
+
+$Items Details; 
+
+select * from siwggy_add_on,swiggy_add_on_details 
+where swiggy_add_on_details.add_on_id =siwggy_add_on.id_add_on and siwggy_add_on.item_id =1
+
+#Varaint 
+
+select * from swiggy_variant_details,swiggy_variants 
+where swiggy_variant_details.id_variant =swiggy_variants.id_variants 
+and swiggy_variants.id_item_details = 1
+
+sql.sendPushNotification=SELECT reg.platform_endpoint_arn as platformEndpointArn,reg.device_id as deviceId, pref.user_pref as userPref, \
+	pref.user_pref_timings as userPrefTimings \
+	FROM sn_register as reg join sn_user_pref as pref \
+	WHERE reg.seller_code=:seller_code and reg.seller_code=pref.seller_code \
